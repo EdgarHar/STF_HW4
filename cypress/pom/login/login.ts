@@ -2,17 +2,25 @@ import {loginLocators} from "./loginLocators";
 
 class LoginPage {
 
+    elements = {
+        loginErrorMessage: () => cy.get(loginLocators.loginErrorLocator),
+        usernameBox: () => cy.get(loginLocators.usernameLocator),
+        passwordBox: () => cy.get(loginLocators.passwordLocator),
+        loginButton: () => cy.xpath(loginLocators.loginButtonLocator),
+        confirmLogin: () => cy.xpath(loginLocators.confirmLoginLocator)
+    }
+
     enterCredentials(username: string, password: string) {
-        cy.get(loginLocators.usernameLocator).type(username)
-        cy.get(loginLocators.passwordLocator).type(password)
+        this.elements.usernameBox().type(username)
+        this.elements.passwordBox().type(password)
     }
 
     open() {
-        cy.xpath(loginLocators.loginButtonLocator).click();
+        this.elements.loginButton().click();
     }
 
     confirmLogin() {
-        cy.xpath(loginLocators.confirmLoginLocator).click()
+        this.elements.confirmLogin().click()
     }
 
 }

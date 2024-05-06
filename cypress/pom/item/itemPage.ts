@@ -3,12 +3,13 @@ import Chainable = Cypress.Chainable;
 
 class ItemPage {
 
-    getProductDescription(): Chainable<JQuery<HTMLElement>> {
-        return cy.get(itemPageLocators.itemDescriptionLocator)
+    elements = {
+        productDescription: () => cy.get(itemPageLocators.itemDescriptionLocator),
+        searchItemBox: () => cy.get(itemPageLocators.searchItemLocator)
     }
 
     searchItem(name: string) {
-        cy.get(itemPageLocators.searchItemLocator).type(name)
+        this.elements.searchItemBox().type(name)
     }
 
 }
